@@ -1,0 +1,91 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/go
+{
+	"name": "template",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/go:0-1-bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/azure-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+		"ghcr.io/devcontainers/features/go:1": {},
+		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"github.copilot-nightly",
+				"timonwong.shellcheck",
+				"mohsen1.prettify-json",
+				"yzhang.markdown-all-in-one",
+				"IBM.output-colorizer",
+				"oderwat.indent-rainbow",
+				"davidanson.vscode-markdownlint",
+				"eamodio.gitlens",
+				"eriklynd.json-tools",
+				"golang.go",
+				"ms-vscode.go",
+				"adamhartford.vscode-base64",
+				"shardulm94.trailing-spaces",
+				"pomdtr.excalidraw-editor"
+			],
+			// zsh
+			"settings": {
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/usr/bin/zsh",
+						"args": ["-l"]
+					}
+				},
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"files.insertFinalNewline": true,
+				"files.trimFinalNewlines": true,
+				// go configs
+				"go.toolsManagement.checkForUpdates": "local",
+				"go.useLanguageServer": true,
+				"go.gopath": "/go",
+				"go.lintTool": "revive",
+				"go.goroot": "/usr/local/go",
+				"go.lintFlags": [
+					"--fast"
+				],
+				"[go]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": true
+					},
+					// Optional: Disable snippets, as they conflict with completion ranking.
+					"editor.snippetSuggestions": "none"
+				},
+				"[go.mod]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": true
+					}
+				},
+				"gopls": {
+					// Add parameter placeholders when completing a function.
+					"usePlaceholders": true,
+					// If true, enable additional analyses with staticcheck.
+					// Warning: This will significantly increase memory usage.
+					"staticcheck": false
+				}
+			}
+		}
+	},
+	"remoteEnv": {
+        "HOST_PROJECT_PATH": "${localWorkspaceFolder}"
+    }
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "go version",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
